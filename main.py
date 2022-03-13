@@ -5,7 +5,7 @@ import mysql.connector
 import buzzer
 import motor
 import LDR
-import weight_sensor
+import weightsensor
 import ir
 import random
 
@@ -24,6 +24,7 @@ def test_db():
     mycursor.execute(command)
     mydb.commit()
 test_db()
+
 def update(sensor_id, sensor_value):
     # updates last measured value
     command = "UPDATE bird_feeder SET last_measured = current_measured WHERE id = sensor_id"
@@ -50,9 +51,9 @@ def main():
                 update('ir_sensor', food_val)
 
             # update weight_sensor
-            val = weight_sensor.get_value()
+            val = weightsensor.get_value()
             update('weight_sensor', val)
-            allowed = weight_sensor.allowed_bird(val,0,200)
+            allowed = weightsensor.allowed_bird(val,0,200)
             #we still need a way to acces this value, eventually in the birds database
             if allowed == 1:
                 last_motor_state = "SELECT * from last_measured WHERE id = 'motor'" #0 or 1, closed and open

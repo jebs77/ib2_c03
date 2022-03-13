@@ -24,7 +24,7 @@ def turn_off_LEDs():
 
 
 def check_food_status():
-    while True:
+    # while True:
         emitter.on()
         time.sleep(1)
         turn_off_LEDs()
@@ -43,11 +43,11 @@ def check_food_status():
             LED_red.on()
             state = 3
         emitter.off()
-        # return state        #commenten bij testen van de ir sensor
+        return state        #commenten bij testen van de ir sensor
 
 
 
-check_food_status()
+
 
 
 
