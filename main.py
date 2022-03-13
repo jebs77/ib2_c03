@@ -1,7 +1,6 @@
 import time
 
 import mysql.connector
-
 import buzzer
 import motor
 import LDR
@@ -19,10 +18,12 @@ print(mydb)
 
 mycursor = mydb.cursor()
 
+
 def test_db():
     command = "UPDATE bird_feeder SET last_measured = 5 WHERE id = 'weight_sensor' "
     mycursor.execute(command)
     mydb.commit()
+
 test_db()
 
 def update(sensor_id, sensor_value):
@@ -78,4 +79,4 @@ def main():
             time.sleep(5)
 
 
-main()
+# main()

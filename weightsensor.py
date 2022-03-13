@@ -1,14 +1,18 @@
-import time
 
-import gpiozero
 import time
 from gpiozero import *
-weight_sensor = MCP3008(1)
-while True:
-    print(weight_sensor.value)
-    time.sleep(1)
 
+weight_sensor = MCP3008(1, differential= True)
 
+def test():
+    while True:
+        print(weight_sensor.value)
+        print(weight_sensor.bits)
+        print(weight_sensor.voltage)
+        print(weight_sensor.raw_value)
+        time.sleep(1)
+
+test()
 
 
 
