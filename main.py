@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
     host="mysql.studev.groept.be",
     user="a21ib2c03",
     password="secret",
-    database = "a21ib1c03"
+    database="a21ib1c03"
 )
 print(mydb)
 
