@@ -7,6 +7,7 @@ import time
 import gpiozero
 from gpiozero import *
 from signal import *
+import requests
 
 LED_green = LED("BOARD11")
 LED_orange = LED("BOARD13")
