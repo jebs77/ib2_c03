@@ -12,17 +12,16 @@ import random
 def test_db():
     response = requests.get("https://studev.groept.be/api/a21ib2c03/getHatchInfo")
     element = response.json()[0]['component_on']
-
     print(element)
 test_db()
 
 
 def test_put():
-    thingy = "https://studev.groept.be/api/a21ib2c03/testPythonPut/"
-    print(thingy)
-    requests.get(thingy+str(8))
+    read = "https://studev.groept.be/api/a21ib2c03/testPythonPut/"
+    print(read)
+    requests.get(read+str(12))
 
-# test_put()
+test_put()
 
 
 

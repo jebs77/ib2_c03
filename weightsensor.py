@@ -6,13 +6,37 @@ weight_sensor = MCP3008(1)
 
 def test():
     while True:
-        print(weight_sensor.raw_value)
-        print(weight_sensor.voltage)
+        raw = weight_sensor.raw_value
 
+        print(raw)
+        print(weight_sensor.voltage)
+        print("The weight of the bird is " +  str(abs(round(8.3774*raw - 779.1, 2))) + " gram")
         time.sleep(1)
 
 
 test()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
