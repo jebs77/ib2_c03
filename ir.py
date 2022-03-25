@@ -10,7 +10,6 @@ from signal import *
 import requests
 
 LED_green = LED("BOARD11")
-LED_orange = LED("BOARD13")
 LED_red = LED("BOARD15")
 emitter = LED("BOARD12")
 
@@ -20,12 +19,11 @@ receiver_2 = gpiozero.InputDevice("BOARD36")
 
 def turn_off_LEDs():
     LED_red.off()
-    LED_orange.off()
     LED_green.off()
 
 
 def check_food_status():
-    # while True:
+    while True:
         emitter.on()
         time.sleep(1)
         turn_off_LEDs()
@@ -37,7 +35,8 @@ def check_food_status():
             LED_green.on()
         elif receiver_1.value == 1 and receiver_2.value == 0:
             print("Between 66% and 33 % of food left")
-            LED_orange.on()
+            LED_green.on()
+            LED_red.on()
             state = 2
         else:
             print("Less than 33% of food left")
@@ -46,21 +45,23 @@ def check_food_status():
         emitter.off()
         return state        #commenten bij testen van de ir sensor
 
+# check_food_status()
 
 
 
 
 
-
-# def test_led():
-#     while True:
-#         LED_green.on()
-#         time.sleep(1)
-#         LED_green.off()
-#         LED_orange.on()
-#         time.sleep(1)
-#         LED_orange.off()
-#         LED_red.on()
-#         time.sleep(1)
-#         LED_red.off()
-# test_led()
+def test_led():
+    while True:
+        LED_green.on()
+        time.sleep(1)
+        LED_green.off()
+        LED_green.on()
+        LED_red.on()
+        time.sleep(1)
+        LED_green.off()
+        LED_red.off()
+        LED_red.on()
+        time.sleep(1)
+        LED_red.off()
+test_led()

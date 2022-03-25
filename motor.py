@@ -22,14 +22,24 @@ dcMotor = Motor (5, 6)
 
 
 def open():
-    dcMotor.forward()
-    time.sleep(3)
+    dcMotor.backward()
+    time.sleep(.5)
     dcMotor.stop()
     return 1
 
 
 def close():
-    dcMotor.backward()
-    time.sleep(3)
+    dcMotor.forward()
+    time.sleep(.5)
     dcMotor.stop()
     return 0
+
+def testmotor():
+    while True :
+        close()
+        print("closing")
+        open()
+        print("opening")
+
+# testmotor()
+# close()
