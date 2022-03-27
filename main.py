@@ -79,29 +79,34 @@ def main():
 
             if manual_hatch == 0:
                 if allowed == 1:
-                    last_motor_state_json =  requests.get("https://studev.groept.be/api/a21ib2c03/getHatchInfo")
-                    last_motor_state = last_motor_state_json.json()[0]['current_measured']
+                    last_motor_state_response =  requests.get("https://studev.groept.be/api/a21ib2c03/getHatchInfo")
+                    last_motor_state = last_motor_state_response.json()[0]['current_measured']
                     #select motor state
-                    if last_motor_state ==0:
-                        motor.close()
+                    if last_motor_state ==str(0):
+                        motor.open()
+                        print("opening hatch")
                         requests.get("https://studev.groept.be/api/a21ib2c03/updateMotor/"+str(1))
                 else:
+                    last_motor_state_response =  requests.get("https://studev.groept.be/api/a21ib2c03/getHatchInfo")
+                    last_motor_state = last_motor_state_response.json()[0]['current_measured']
+                    if last_motor_state ==str(1):
+                        motor.close()
+                        print("closing hatch")
+                        requests.get("https://studev.groept.be/api/a21ib2c03/updateMotor/"+str(0))
                     response = requests.get("https://studev.groept.be/api/a21ib2c03/GetBuzzerInfo")
                     buzzerState = response.json()[0]["manual"]
-                    if buzzerState == 1:
+                    if buzzerState == str(1):
                         buzzer.buzzer()
-
-                    last_motor_state = 1 #check buzzer state via querry (to do)
-                    if last_motor_state ==1:
-                        motor.open()
-                        requests.get("https://studev.groept.be/api/a21ib2c03/updateMotor/"+str(0))
             else:
-
-            allowed = 0
+                last_motor_state_response =  requests.get("https://studev.groept.be/api/a21ib2c03/getHatchInfo")
+                last_motor_state = last_motor_state_response.json()[0]['current_measured']
+                if last_motor_state == 1:
+                    motor.close()
+                    print("closing hatch")
+                    requests.get("https://studev.groept.be/api/a21ib2c03/updateMotor/"+str(0))
             index +=1
-            time.sleep(1)
-
+            time.sleep(5)
         else:
-            time.sleep(1)
+            time.sleep(5)
 
 main()
