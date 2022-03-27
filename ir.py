@@ -64,4 +64,4 @@ def test_led():
         LED_red.on()
         time.sleep(1)
         LED_red.off()
-test_led()
+# test_led()
